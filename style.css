@@ -1,0 +1,35 @@
+body {
+  font-family: 'Yu Gothic', 'Meiryo', sans-serif;
+  background: #f6f6fd;
+  color: #222;
+  text-align: center;
+  margin: 0;
+  padding: 40px 0;
+}
+
+h1 {
+  color: #3b4cca;
+  margin-bottom: 24px;
+}
+
+button {
+  font-size: 1.1em;
+  margin: 0 8px;
+  padding: 12px 28px;
+  border-radius: 6px;
+  border: none;
+  background: #3b4cca;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background: #27408b;
+}
+
+#result {
+  margin-top: 36px;
+  font-size: 1.2em;
+  min-height: 2em;
+}
