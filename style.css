@@ -12,10 +12,14 @@ h1 {
   margin-bottom: 24px;
 }
 
+.gacha-buttons {
+  margin-bottom: 24px;
+}
+
 button {
   font-size: 1.1em;
-  margin: 0 8px;
-  padding: 12px 28px;
+  margin: 0 12px;
+  padding: 12px 32px;
   border-radius: 6px;
   border: none;
   background: #3b4cca;
@@ -28,8 +32,18 @@ button:hover {
   background: #27408b;
 }
 
-#result {
-  margin-top: 36px;
-  font-size: 1.2em;
+.result-area {
+  margin: 24px auto;
+  padding: 16px;
+  border: 1px solid #ccc;
+  background: #fff;
+  width: 320px;
+  border-radius: 8px;
   min-height: 2em;
+}
+
+.count-area {
+  margin-top: 18px;
+  font-size: 1.1em;
+  color: #555;
 }
