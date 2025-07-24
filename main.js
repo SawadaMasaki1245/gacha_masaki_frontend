@@ -1,15 +1,27 @@
-let gachaCount = 0;
+export let gachaCount = 0;
 
-// 結果を表示するDOM要素をあらかじめ取得しておきます
-const gachaResultEl = document.getElementById('gacha-result');
-const gachaCountEl = document.getElementById('gacha-count');
-const imageContainer = document.getElementById('gacha-image-container');
+export function resetGachaCountForTest() {
+  gachaCount = 0;
+}
+
+// DOM要素の変数を宣言
+let gachaResultEl, gachaCountEl, imageContainer;
+
+/**
+ * DOM要素を初期化（取得）する関数
+ */
+export function initializeDOMElements() {
+  gachaResultEl = document.getElementById('gacha-result');
+  gachaCountEl = document.getElementById('gacha-count');
+  imageContainer = document.getElementById('gacha-image-container');
+}
 
 /**
  * ガチャの結果（画像）を表示する関数
  * @param {string[]} results - ガチャ結果の文字列の配列
  */
-function displayImages(results) {
+export function displayImages(results) {
+  if (!imageContainer) initializeDOMElements(); // 未初期化の場合に初期化
   imageContainer.innerHTML = ''; // 前回の結果をクリア
   results.forEach(result => {
     const img = document.createElement('img');
@@ -25,17 +37,17 @@ function displayImages(results) {
  * @param {string} resultKey - APIレスポンスから結果を取得するためのキー (例: 'result' or 'results')
  * @param {string} description - 表示用の説明文 (例: '単発ガチャ')
  */
-async function performGacha(url, pullCount, resultKey, description) {
+export async function performGacha(url, pullCount, resultKey, description) {
+  if (!gachaResultEl) initializeDOMElements(); // 未初期化の場合に初期化
+
   try {
     const response = await fetch(url);
     if (!response.ok) {
-      // fetchが成功しても、ステータスコードがエラーの場合に対応します
       throw new Error(`APIエラー: ${response.status}`);
     }
     const data = await response.json();
 
     gachaCount += pullCount;
-    // 結果が配列でない場合も配列として扱えるようにします
     const results = Array.isArray(data[resultKey]) ? data[resultKey] : [data[resultKey]];
 
     gachaResultEl.textContent = `${description}: ${results.join(', ')}`;
@@ -49,12 +61,19 @@ async function performGacha(url, pullCount, resultKey, description) {
   }
 }
 
-// 各ボタンのクリックイベントに、パラメータを変えて共通の関数を割り当てます
-document.getElementById('single-gacha').onclick = () => {
-  // ←APIのURLは適宜変更
-  performGacha('http://localhost:8000/gacha/single', 1, 'result', '単発ガチャ');
-};
+// ブラウザ環境でのみ実行されるようにする
+if (typeof window !== 'undefined') {
+  initializeDOMElements(); // ページ読み込み時に要素を取得
 
-document.getElementById('ten-gacha').onclick = () => {
-  performGacha('http://localhost:8000/gacha/ten', 10, 'results', '10連ガチャ');
-};
+  if (document.getElementById('single-gacha')) {
+    document.getElementById('single-gacha').onclick = () => {
+      performGacha('http://localhost:8000/gacha/single', 1, 'result', '単発ガチャ');
+    };
+  }
+
+  if (document.getElementById('ten-gacha')) {
+    document.getElementById('ten-gacha').onclick = () => {
+      performGacha('http://localhost:8000/gacha/ten', 10, 'results', '10連ガチャ');
+    };
+  }
+}

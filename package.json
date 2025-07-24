@@ -1,0 +1,24 @@
+{
+  "name": "gacha-masaki-frontend",
+  "version": "1.0.0",
+  "description": "ガチャWebアプリのフロントエンド（HTML + JS + CSS）です。",
+  "main": "main.js",
+  "scripts": {
+    "test": "vitest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SawadaMasaki1245/gacha_masaki_frontend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SawadaMasaki1245/gacha_masaki_frontend/issues"
+  },
+  "homepage": "https://github.com/SawadaMasaki1245/gacha_masaki_frontend#readme",
+  "devDependencies": {
+    "jsdom": "^26.1.0",
+    "vitest": "^3.2.4"
+  }
+}
