@@ -44,3 +44,23 @@ gacha_logic.pyの関数定義は問題ないか？
 
 ### 今後の課題
 - テストコードを追加する
+
+## 2025.07.24
+テスト環境の構築とCIの導入
+
+### テスト環境のセットアップ
+- npmプロジェクトを初期化 (`package.json`)
+- VitestとJSDOMを導入
+- Vitestの設定ファイルを作成 (`vitest.config.js`)
+
+### 単体テストの実装 (`main.test.js`)
+- `main.js`をESMに対応させ、関数をexportするように修正
+- ガチャ成功時のテスト（単発・10連）を実装
+- APIエラー時のテストを実装
+
+### CIの導入
+- GitHub Actionsのワークフロー (`.github/workflows/ci.yml`) を作成
+- push/pull_request時に`npm test`を自動実行するように設定
+
+### 今後の課題
+- UI/UXの改善
