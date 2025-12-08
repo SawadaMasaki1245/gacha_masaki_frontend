@@ -18,7 +18,7 @@
   },
   "homepage": "https://github.com/SawadaMasaki1245/gacha_masaki_frontend#readme",
   "devDependencies": {
-    "jsdom": "^26.1.0",
+    "jsdom": "^27.3.0",
     "vitest": "^3.2.4"
   }
 }
